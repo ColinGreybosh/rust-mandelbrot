@@ -1,6 +1,18 @@
 # rust-mandelbrot
 A CLI for generating images of the Mandelbrot set, written in Rust.
 
+## Example Usage
+```
+$ cargo run -r -- -o ./output/test1.png --width 3000 --height 2000 --zoom 800
+    Finished release [optimized] target(s) in 0.04s
+     Running `target/release/mandelbrot -o ./output/test1.png --width 3000 --height 2000 --zoom 800`
+Generating 3000 x 2000 image of the Mandelbrot set...
+Successfully saved image to "./output/test1.png".
+```
+
+### Output Image
+![test1](https://user-images.githubusercontent.com/18294604/195649245-b0011236-0388-4c8d-b10a-12b01f1efeee.png)
+
 ## Installation
 * Follow [the steps](https://www.rust-lang.org/tools/install) to install Rust.
 * Clone this repository.
