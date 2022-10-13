@@ -14,7 +14,7 @@ Successfully saved image to "./output/test1.png".
 ![test1](https://user-images.githubusercontent.com/18294604/195649245-b0011236-0388-4c8d-b10a-12b01f1efeee.png)
 
 ## Installation
-* Follow [the steps](https://www.rust-lang.org/tools/install) to install Rust.
+* [Install Rust](https://www.rust-lang.org/tools/install).
 * Clone this repository.
 * In the repository root, run `cargo run -r -- [OPTIONS] --out <OUT>`.
 
