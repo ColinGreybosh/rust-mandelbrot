@@ -1,38 +1,45 @@
 use image::{ImageBuffer, Rgb};
 use num::Complex;
-use std::path::PathBuf;
 
+enum Divergence {
+    Unbounded(u8),
+    Bounded,
+}
 
-pub fn generate_image(width: u32, height: u32, iterations: u32, zoom: f32, out: PathBuf) {
-    let to_imaginary_domain = |x: u32, y: u32| -> (f32, f32) {
-        let re: f32 = x as f32 - width as f32 / 2.0;
-        let im: f32 = y as f32 - height as f32 / 2.0;
-        (re / zoom, im / zoom)
+fn mandelbrot_divergence(c: Complex<f64>, iterations: u8) -> Divergence {
+    let mut z = Complex::<f64> { re: 0.0, im: 0.0 };
+    for i in 0..iterations {
+        z = z * z + c;
+        if z.norm() >= 2.0 {
+            return Divergence::Unbounded(i);
+        }
+    }
+    Divergence::Bounded
+}
+
+pub fn generate_image(
+    width: u32,
+    height: u32,
+    iterations: u8,
+    zoom: f64,
+) -> ImageBuffer<Rgb<u8>, Vec<u8>> {
+    let to_imaginary_domain = |x: u32, y: u32| -> Complex<f64> {
+        let re: f64 = f64::from(x) - f64::from(width) / 2.0;
+        let im: f64 = f64::from(y) - f64::from(height) / 2.0;
+        Complex::<f64> {
+            re: re / zoom,
+            im: im / zoom
+        }
     };
-    
-    println!("Generating {} x {} image of the Mandelbrot set...", width, height);
-    
-    let img = ImageBuffer::from_fn(width, height, |px, py| {
-        let (x, y) = to_imaginary_domain(px, py);
-        let c = Complex::<f32> { re: x, im: y };
-        let mut z = Complex::<f32> { re: 0.0, im: 0.0 };
-        for _i in 0..iterations {
-            z = z * z + c;
-            if z.norm() >= 2.0 {
-                let r = (px  / width) as u8;
-                let b = (py / height) as u8;
-                return Rgb::<u8>([r, 0x00, b]);
+
+    ImageBuffer::from_fn(width, height, |px, py| {
+        match mandelbrot_divergence(to_imaginary_domain(px, py), iterations) {
+            Divergence::Unbounded(_i) => {
+                Rgb::<u8>([0x00, 0x00, 0x00])
+            },
+            Divergence::Bounded => {
+                Rgb::<u8>([0xFF, 0xFF, 0xFF])
             }
         }
-        Rgb::<u8>([0xFF, 0xFF, 0xFF])
-    });
-    
-    match img.save(out.clone()) {
-        Ok(_) => {
-            println!("Successfully saved image to {:#?}.", out.as_os_str());
-        },
-        Err(error) => {
-            panic!("Failed to save the image: {:#?}", error);
-        }
-    };
+    })
 }

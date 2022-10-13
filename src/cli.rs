@@ -32,9 +32,9 @@ pub struct Args {
         short,
         long,
         default_value_t = 100,
-        value_parser = clap::value_parser!(u32).range(1..),
+        value_parser = clap::value_parser!(u8).range(1..),
     )]
-    pub iterations: u32,
+    pub iterations: u8,
 
     /// Scales the image size
     #[arg(
