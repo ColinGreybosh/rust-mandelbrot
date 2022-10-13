@@ -1,20 +1,20 @@
 use image::{ImageBuffer, Rgb};
 use num::Complex;
 
-enum Divergence {
+enum Boundedness {
     Unbounded(u8),
     Bounded,
 }
 
-fn mandelbrot_divergence(c: Complex<f64>, iterations: u8) -> Divergence {
+fn mandelbrot_boundedness(c: Complex<f64>, iterations: u8) -> Boundedness {
     let mut z = Complex::<f64> { re: 0.0, im: 0.0 };
     for i in 0..iterations {
         z = z * z + c;
         if z.norm() >= 2.0 {
-            return Divergence::Unbounded(i);
+            return Boundedness::Unbounded(i);
         }
     }
-    Divergence::Bounded
+    Boundedness::Bounded
 }
 
 pub fn generate_image(
@@ -33,11 +33,11 @@ pub fn generate_image(
     };
 
     ImageBuffer::from_fn(width, height, |px, py| {
-        match mandelbrot_divergence(to_imaginary_domain(px, py), iterations) {
-            Divergence::Unbounded(_i) => {
+        match mandelbrot_boundedness(to_imaginary_domain(px, py), iterations) {
+            Boundedness::Unbounded(_i) => {
                 Rgb::<u8>([0x00, 0x00, 0x00])
             },
-            Divergence::Bounded => {
+            Boundedness::Bounded => {
                 Rgb::<u8>([0xFF, 0xFF, 0xFF])
             }
         }
