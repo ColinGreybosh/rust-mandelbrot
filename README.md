@@ -11,7 +11,7 @@ Successfully saved image to "output/blah.png".
 ```
 
 ### Output Image
-<img src="https://user-images.githubusercontent.com/18294604/195937353-ad519e54-8e20-471f-9fa4-0350569960e0.png" alt="A zoomed in image of the Mandelbrot set" style="width: 500px; height: 500px">
+<img src="https://user-images.githubusercontent.com/18294604/195937353-ad519e54-8e20-471f-9fa4-0350569960e0.png" alt="A zoomed in image of the Mandelbrot set" style="width: 100%;">
 
 
 ## Installation
