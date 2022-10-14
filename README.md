@@ -11,7 +11,8 @@ Successfully saved image to "output/blah.png".
 ```
 
 ### Output Image
-![test1](https://user-images.githubusercontent.com/18294604/195649245-b0011236-0388-4c8d-b10a-12b01f1efeee.png)
+<img src="https://user-images.githubusercontent.com/18294604/195937353-ad519e54-8e20-471f-9fa4-0350569960e0.png" alt="A zoomed in image of the Mandelbrot set" style="width: 500px; height: 500px">
+
 
 ## Installation
 * [Install Rust](https://www.rust-lang.org/tools/install).
