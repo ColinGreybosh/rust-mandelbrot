@@ -3,11 +3,11 @@ A CLI for generating images of the Mandelbrot set, written in Rust.
 
 ## Example Usage
 ```
-$ cargo run -r -- -o ./output/test1.png --width 3000 --height 2000 --zoom 800
-    Finished release [optimized] target(s) in 0.04s
-     Running `target/release/mandelbrot -o ./output/test1.png --width 3000 --height 2000 --zoom 800`
-Generating 3000 x 2000 image of the Mandelbrot set...
-Successfully saved image to "./output/test1.png".
+$ cargo run -r -- --out-path output/blah.png --width 2000 --height 2000 --zoom 400
+   Compiling mandelbrot v0.1.0 (/Users/colin/mandelbrot)
+    Finished release [optimized] target(s) in 0.71s
+     Running `target/release/mandelbrot --out-path output/blah.png --width 2000 --height 2000 --zoom 400`
+Successfully saved image to "output/blah.png".
 ```
 
 ### Output Image
