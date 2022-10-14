@@ -20,14 +20,16 @@ Successfully saved image to "./output/test1.png".
 
 ## CLI
 ```
-Usage: mandelbrot [OPTIONS] --out <OUT>
+Usage: mandelbrot [OPTIONS] --out-path <OUT_PATH>
 
 Options:
       --width <WIDTH>            Width of the output image [default: 1000]
       --height <HEIGHT>          Height of the output image [default: 1000]
   -i, --iterations <ITERATIONS>  The maximum number of terms calculated in order to determine whether or not a point is in the Mandelbrot set [default: 100]
-  -z, --zoom <ZOOM>              Scales the image size [default: 200]
-  -o, --out <OUT>                Path of the output image file with desired extension
-  -h, --help                     Print help information
+  -z, --zoom <ZOOM>              Scales the image size [default: 15]
+  -x, --x-offset <X_OFFSET>      The offset of the image along the X axis [default: -0.75]
+  -y, --y-offset <Y_OFFSET>      The offset of the image along the Y axis [default: 0.1]
+  -o, --out-path <OUT_PATH>      Path of the output image file with desired extension
+  -h, --help                     Print help information (use `--help` for more detail)
   -V, --version                  Print version information
 ```
